@@ -22,4 +22,5 @@ function App() {
   );
 }
 
+const giphy_secret_key = process.env.REACT_APP_SPOTIFY_KEY;
 export default App;
