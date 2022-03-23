@@ -1,7 +1,7 @@
-
+import ButtonTrack from './components/button-props/index';
 import './App.css';
 import data from './data';
-
+import TrackMusic from './components/track/index';
 
 function App() {
   return (
@@ -14,15 +14,13 @@ function App() {
       <div className="music-desc">
         <div className="container">
           <div className="music">
-            <img
-              className="img-icon"
-              src={data.album.images[1].url}
-              alt=""
+            <TrackMusic 
+            images={data.album.images[1].url}
+            title={data.name}
+            artist={data.artists[0].name}
+            album={data.album.name}
             />
-            <h3>Title : {data.name}</h3>
-            <p>Artists : {data.artists[0].name}</p>
-            <p>Albums : {data.album.name}</p>
-            <button class="button2" type="submit">Select</button>
+            <ButtonTrack />
           </div>
         </div>
       </div>
