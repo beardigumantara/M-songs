@@ -22,7 +22,7 @@ function App() {
             <h3>Title : {data.name}</h3>
             <p>Artists : {data.artists[0].name}</p>
             <p>Albums : {data.album.name}</p>
-            <button class="button2" type="submit">Nothing</button>
+            <button class="button2" type="submit">Select</button>
           </div>
         </div>
       </div>
