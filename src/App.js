@@ -4,6 +4,16 @@ import data from './data';
 import TrackMusic from './components/track/index';
 
 function App() {
+
+  const renderSong = data.map((music) => 
+    <TrackMusic 
+      images={music.album.images[1].url}
+      title={music.name}
+      artist={music.artists[0].name}
+      album={music.album.name}
+    />
+  )
+
   return (
     <div className="App">
       <div className="main">
@@ -14,13 +24,7 @@ function App() {
       <div className="music-desc">
         <div className="container">
           <div className="music">
-            <TrackMusic 
-            images={data.album.images[1].url}
-            title={data.name}
-            artist={data.artists[0].name}
-            album={data.album.name}
-            />
-            <ButtonTrack />
+            {renderSong}
           </div>
         </div>
       </div>

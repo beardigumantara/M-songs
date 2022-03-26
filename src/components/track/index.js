@@ -1,3 +1,5 @@
+import ButtonTrack from "../button-props";
+
 const TrackMusic = ({images, title, artist, album}) => {
     return <div className="track-desc">
     <img
@@ -7,6 +9,7 @@ const TrackMusic = ({images, title, artist, album}) => {
     <h3>Title : {title}</h3>
     <p>Artists : {artist}</p>
     <p>Albums : {album}</p>
+    <ButtonTrack />
   </div>
 }
 
