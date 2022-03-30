@@ -1,4 +1,4 @@
-const client_id = process.env.REACT_APP_CLIENT_ID;
+var client_id = process.env.REACT_APP_CLIENT_ID;
 var redirect_uri = 'http://localhost:3000/';
 
 var state = "m-songs_Berdi";
