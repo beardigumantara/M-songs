@@ -10,6 +10,7 @@ function App() {
   const [token, setToken] = useState("");
   const [searchSong, setSearchSong] = useState("");
   const [songData, setSongData] = useState([]);
+  const [selectedSong, setSelectedSong ] = useState ([]);
   
   useEffect(() => {
     const queryString = new URL(window.location.href.replace('#', '?')).searchParams;
@@ -28,6 +29,16 @@ function App() {
       });
   };
 
+  const handleSelectedSong = (uri) => {
+    const alreadySelected = selectedSong.find(s => s === uri);
+    if (alreadySelected) {
+      setSelectedSong(selectedSong.filter(s => s === uri))
+    } else {
+      setSelectedSong([...selectedSong, uri])
+    }
+    console.log(selectedSong)
+  }
+
   const renderSong = songData.map((music) => 
     <TrackMusic 
       key={music.id}
@@ -35,7 +46,9 @@ function App() {
       title={music.name}
       artist={music.artists[0].name}
       album={music.album.name}
+      onSelectSong={handleSelectedSong}
     />
+
   )
 
   return (

@@ -1,6 +1,4 @@
-import ButtonTrack from "../button-props";
-
-const TrackMusic = ({images, title, artist, album}) => {
+const TrackMusic = ({images, title, artist, album, onSelectSong, uri, isSelected}) => {
     return <div className="track-desc">
     <img
       src={images}
@@ -9,7 +7,9 @@ const TrackMusic = ({images, title, artist, album}) => {
     <h3>Title : {title}</h3>
     <p>Artists : {artist}</p>
     <p>Albums : {album}</p>
-    <ButtonTrack />
+    <button onClick={() => onSelectSong(uri)}>
+      {isSelected ? 'Deselect' : 'Select'}
+      </button>
   </div>
 }
 
