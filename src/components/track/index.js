@@ -2,7 +2,7 @@ const TrackMusic = ({images, title, artist, album, onSelectSong, uri, isSelected
     return <div className="track-desc">
     <img
       src={images}
-      alt=""
+      alt="album"
     />
     <h3>Title : {title}</h3>
     <p>Artists : {artist}</p>
