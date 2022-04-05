@@ -4,7 +4,7 @@ var redirect_uri = 'http://localhost:3000/';
 var state = "m-songs_Berdi";
 
 localStorage.setItem("TOKEN", state);
-var scope = 'user-read-private user-read-email';
+var scope = 'playlist-modify-private';
 
 var url = 'https://accounts.spotify.com/authorize';
 url += '?response_type=token';

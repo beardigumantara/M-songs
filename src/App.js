@@ -1,6 +1,8 @@
 import ButtonTrack from './components/button-props/index';
 import './App.css';
 import data from './data';
+import { useSelector, useDispatch } from 'react-redux';
+import { setToken } from './components/store/slice-token';
 import TrackMusic from './components/track/index';
 import axios from "axios";
 import url from './helper/auth';
@@ -8,20 +10,22 @@ import {useEffect, useState} from "react";
 import CreatePlaylist from './components/track/playlist';
 
 function App() {
-  const [token, setToken] = useState("");
-  const [searchSong, setSearchSong] = useState("");
+  const token = useSelector((state) => state.token);
+  const dispatch = useDispatch();
+  const [accToken, setAccToken] = useState('') ;
+  const [searchSong, setSearchSong] = useState('');
   const [songData, setSongData] = useState([]);
   const [selectedSong, setSelectedSong ] = useState ([]);
   const [combinedSong, setCombinedSong] = useState([]);
   const [user, setUser] = useState({});
-  const [isiLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     const queryString = new URL(window.location.href.replace('#', '?')).searchParams;
     const accessToken = queryString.get('access_token');
-    setToken(accessToken);
+    setAccToken(accessToken);
     if (accessToken !== null) {
-      setToken(accessToken);
+      setAccToken(accessToken);
       setIsLogin(accessToken !== null);
 
       const setUserProfile = async () => {
@@ -29,10 +33,11 @@ function App() {
           const requestOptions = {
             headers: {
               'Authorization': 'Bearer ' + accessToken,
-              'Content-Type': 'application/json',
-            }
-          }
+              'Content-Type': 'appliaction/json',
+            },
+          };
           console.log(requestOptions);
+          console.log(accessToken)
 
           const response = await fetch(`https://api.spotify.com/v1/me`, requestOptions).then(data => data.json());
           console.log(response);
@@ -41,13 +46,14 @@ function App() {
           alert(err)
         }
       }
+      dispatch(setToken(accessToken));
       setUserProfile();
     }
-  }, []);
+  }, [dispatch]);
 
   const getSong = async () => {
     await axios
-      .get(`https://api.spotify.com/v1/search?q=${searchSong}&type=track&access_token=${token}`)
+      .get(`https://api.spotify.com/v1/search?q=${searchSong}&type=track&access_token=${accToken}`)
       .then((response) => setSongData(response.data.tracks.items))
       .catch((err) =>{
         console.log(err);
@@ -93,13 +99,17 @@ function App() {
         <header>
           <div className="navbar">
           <h1>Create Playlist</h1>
-          {!isiLogin && (<a href={url}>Login</a>)}
+          {!isLogin && (<a href={url}>Login</a>)}
           </div>
         </header>
       </div>
       <main>
         <div className='playlist-contemt'>
-          {isiLogin && (<CreatePlaylist accesToken={token} userId={user.id} uris={selectedSong}/>)}
+        {isLogin && (
+          <>
+          <CreatePlaylist accessToken={accToken} userId={user.id} uris={selectedSong}/>
+          </>
+        )}
         </div>
         <div className="search-bar">
           <input type="search" onChange={(e) =>setSearchSong(e.target.value)}/>
