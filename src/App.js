@@ -8,6 +8,7 @@ import axios from "axios";
 import url from './helper/auth';
 import {useEffect, useState} from "react";
 import CreatePlaylist from './components/track/playlist';
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 
 function App() {
   const token = useSelector((state) => state.token);
@@ -33,7 +34,7 @@ function App() {
           const requestOptions = {
             headers: {
               'Authorization': 'Bearer ' + accessToken,
-              'Content-Type': 'appliaction/json',
+              'Content-Type': 'application/json',
             },
           };
           console.log(requestOptions);
@@ -93,37 +94,87 @@ function App() {
 
   )
 
-  return (
-    <div className="App">
+  const LoginPage = () => {
+    return (
+      <div className="login-page">
+        <div className="login-content">
+          <h1>Login To Spotify</h1>
+          <a href={url}>
+            <button>Login</button>
+          </a>
+        </div>
+      </div>
+    )
+  }
+
+  const CreatePlaylistPage = () => {
+    return (
       <div className="main">
         <header>
           <div className="navbar">
-          <h1>Create Playlist</h1>
-          {!isLogin && (<a href={url}>Login</a>)}
-          </div>
-        </header>
-      </div>
-      <main>
-        <div className='playlist-contemt'>
-        {isLogin && (
-          <>
-          <CreatePlaylist accessToken={accToken} userId={user.id} uris={selectedSong}/>
-          </>
-        )}
-        </div>
-        <div className="search-bar">
-          <input type="search" onChange={(e) =>setSearchSong(e.target.value)}/>
-          <button type="button" onClick={getSong}>search</button>
-        </div>
-        <div className="music-desc">
-          <div className="container">
-            <div className="music">
-              {renderSong}
+            <div className="logo">
+              <h1>M-Songs</h1>
+            </div>
+            <div className="login">
+              {!isLogin ? (<a href={url}>Login</a>) : (<a href="http://localhost:3000/">Logout</a>)}
             </div>
           </div>
+          <h1>Create Playlist</h1>
+        </header>
+        <main>
+          <div className='playlist-contemt'>
+          {/* {isLogin && (
+            <>
+            <CreatePlaylist accessToken={accToken} userId={user.id} uris={selectedSong}/>
+            </>
+          )} */}
+          <CreatePlaylist
+            accessToken={accToken}
+            userId={user.id}
+            uris={selectedSong}
+          />
+          </div>
+          <div className="search-bar">
+            <input type="search" onChange={(e) =>setSearchSong(e.target.value)}/>
+            <button type="button" onClick={getSong}>search</button>
+          </div>
+          <div className="music-desc">
+            <div className="container">
+              <div className="music">
+                {renderSong}
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  };
+
+  return (
+    <>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              {/* <li>
+                <Link to="/">Login</Link>
+              </li> */}
+              <li>
+                <Link to="/create-playlist">Create Playlist</Link>
+              </li>
+            </ul>
+          </nav>
+          <Switch>
+            <Route path="/create-playlist">
+              {isLogin ? <CreatePlaylistPage /> : <Redirect to="/" />}
+            </Route>
+            <Route path="/">
+              <LoginPage />
+            </Route>
+          </Switch>
         </div>
-      </main>
-    </div>
+      </Router>
+    </>
   );
 };
 
