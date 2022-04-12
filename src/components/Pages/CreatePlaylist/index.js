@@ -71,7 +71,6 @@ const CreatePlaylistPage = () => {
               <h1>M-Songs</h1>
             </div>
           </div>
-          <h1>Create Playlist</h1>
         </header>
         <main>
           <div className='playlist-contemt'>

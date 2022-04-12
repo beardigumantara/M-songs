@@ -4,9 +4,9 @@ const TrackMusic = ({images, title, artist, album, onSelectSong, uri, isSelected
       src={images}
       alt="album"
     />
-    <h3>Title : {title}</h3>
-    <p>Artists : {artist}</p>
-    <p>Albums : {album}</p>
+    <h3>{title}</h3>
+    <p>{artist}</p>
+    <p>{album}</p>
     <button onClick={() => onSelectSong(uri)}>
       {isSelected ? 'Deselect' : 'Select'}
       </button>

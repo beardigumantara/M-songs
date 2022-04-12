@@ -9,14 +9,51 @@ html {
   background-attachment: fixed;
 }
 
-h1 {
+h1{
   padding-left: 10px;
   color: white;
 }
 
-.navbar {
+.navbar, li {
   display: flex;
+  float: left;
   justify-content: space-between;
+  list-style-type: none;
+  padding-right: 20px;
+}
+
+a:hover{
+  color: rgb(216, 216, 216);
+}
+
+.search-bar input, .search-bar {
+  padding-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.navbar, h2{
+  width: 100%;
+  margin-top: 10px;
+  float: left;
+  padding-left: 5px;
+}
+
+textarea{
+  height: 50px;
+}
+
+.log-nav, a{
+  float: right;
+  margin-right: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+form{
+  padding-top: 50px;
+  padding-left: 10px;
+  color: white;
 }
 
 .container {
@@ -40,14 +77,11 @@ h1 {
   padding-top: 10px;
   width: 40%;
   margin-bottom: 20px;
+  border: 5px solid rgb(212, 212, 212);
 }
 
 .track-desc:hover {
   background-color: rgba(255, 255, 255, 0.3);
-}
-
-input {
-  border-radius: 7px;
 }
 
 .klik {
@@ -83,6 +117,9 @@ input,
 textarea {
   background: transparent;
   display: inline-block;
-  border: 2px solid black;
+  border: 3px solid white;
+  border-radius: 7px;
+  color: white;
+  margin: 10px 0;
 }
 
