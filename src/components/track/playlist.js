@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Input, Textarea, Heading, FormLabel, FormControl, Button } from '@chakra-ui/react'
 
 const CreatePlaylist = ({accessToken, userId, uris}) => {
 	const [form, setForm] = useState({
@@ -59,11 +60,14 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
 		}
 	};
 
-	return <form onSubmit={handleCreatePlaylist}>
-		<h2>Create Playlist</h2>
-		<label htmlFor="title">Title</label>
-		<br />
-		<input 
+	return <FormControl onSubmit={handleCreatePlaylist}>
+		<Heading as='h2' size='md' ml='15px' mt='20px' mb='20px'>Create Playlist</Heading>
+		<FormLabel htmlFor="title" ml='15px'>Title</FormLabel>
+		<Input 
+            width='300px'
+            mr='15px' 
+            ml='15px'
+            size='sm' 
 			type="text" 
 			name="title" 
 			id="title"
@@ -71,20 +75,21 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
 			onChange={handleChange}
 		/>
 		<br />
-		<label htmlFor="description">Description</label>
-		<br />
-		<textarea 
+		<FormLabel htmlFor="description" ml='15px'>Description</FormLabel>
+		<Textarea
+			width='300px'
+			height='200px'
+			m='15px'
 			name="description" 
 			id="description" 
 			cols="30" 
 			rows="10"
 			value={form.description}
 			onChange={handleChange}
-		>
-		</textarea>
+		/>
 		<br />
-		<button type="submit">Create</button>
-	</form>
+		<Button colorScheme='teal' size='md' ml='15px' mb='20px' type="submit">Create</Button>
+	</FormControl>
 }
 
 export default CreatePlaylist;

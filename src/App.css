@@ -1,4 +1,4 @@
-html {
+/* html {
   background-image: linear-gradient(
     to bottom,
     rgb(216, 116, 216),
@@ -9,15 +9,17 @@ html {
   background-attachment: fixed;
 }
 
+
+
 h1{
   padding-left: 10px;
   color: white;
 }
 
-.navbar, li {
+.navbar, ul {
   display: flex;
-  float: left;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: flex-start;
   list-style-type: none;
   padding-right: 20px;
 }
@@ -43,8 +45,12 @@ textarea{
   height: 50px;
 }
 
-.log-nav, a{
-  float: right;
+.login-page{
+  text-align: center;
+  margin: 0 auto;
+}
+
+a{
   margin-right: 15px;
   color: white;
   text-decoration: none;
@@ -122,4 +128,4 @@ textarea {
   color: white;
   margin: 10px 0;
 }
-
+ */

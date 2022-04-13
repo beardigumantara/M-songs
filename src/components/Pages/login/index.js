@@ -39,9 +39,7 @@ const LoginPage = () => {
     }, [dispatch, history]);
 
     return (
-        <div className='log-nav'>
             <a className='login-page' href={url}>Login</a>
-        </div>
     )
 }
 
