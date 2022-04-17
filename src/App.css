@@ -1,8 +1,9 @@
-/* html {
-  background-image: linear-gradient(
+
+html {
+  background-image: linear-gradient (
     to bottom,
-    rgb(216, 116, 216),
-    rgb(37, 37, 37)
+    #d874d8,
+    #252525
   );
   height: 100%;
   background-repeat: no-repeat;
@@ -22,6 +23,7 @@ h1{
   justify-content: flex-start;
   list-style-type: none;
   padding-right: 20px;
+  color: white;
 }
 
 a:hover{
@@ -128,4 +130,4 @@ textarea {
   color: white;
   margin: 10px 0;
 }
- */
+

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom'; 
 import { useDispatch } from 'react-redux';
 import url from '../../../helper/auth';
@@ -10,26 +10,26 @@ const LoginPage = () => {
     const history = useHistory();
 
     useEffect(() => {
-        const accessToken = new URLSearchParams(window.location.hash).get("#access_token");
+        const accessToken = new URLSearchParams(window.location.hash).get('#access_token');
 
         if(accessToken !== null) {
             const setUserProfile = async () => {
                 try {
                     const requestOptions = {
                         headers: {
-                            'Authorization': 'Bearer ' + accessToken,
+                            'Authorization': `Bearer ${accessToken}`,
                             'Content-Type': 'application/json',
                         }
-                    }
+                    };
                     const response = await fetch(
-                        `https://api.spotify.com/v1/me`, requestOptions
+                        'https://api.spotify.com/v1/me', requestOptions
                     )
-                    .then(data => data.json());
+                        .then(data => data.json());
                     dispatch(setToken({
                         accessToken: accessToken,
                         user: response
                     }));
-                    history.push("/create-playlist");  
+                    history.push('/create-playlist');  
                 } catch (error) {
                     alert(error);
                 }
@@ -39,8 +39,8 @@ const LoginPage = () => {
     }, [dispatch, history]);
 
     return (
-            <a className='login-page' href={url}>Login</a>
-    )
-}
+        <a className='login-page' href={url}>Login</a>
+    );
+};
 
 export default LoginPage;

@@ -2,8 +2,8 @@ const ButtonTrack = () => {
     return(
         <button type="submit" id="play">
         Select
-      </button>
-    )
-}
+        </button>
+    );
+};
 
 export default ButtonTrack;
