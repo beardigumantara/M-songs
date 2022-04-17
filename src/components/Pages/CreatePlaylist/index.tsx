@@ -1,19 +1,48 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import CreatePlaylist from '../../track/playlist';
-import TrackMusic from '../../track';
-import { useSelector } from 'react-redux';
+import TrackMusic from '../../track/index';
+import { useSelector, RootStateOrAny } from 'react-redux';
 import { Button, Input, Heading, Grid} from '@chakra-ui/react';
+
+interface Song {
+    id: string,
+    uri: string,
+    album: {
+      images: [{ url: string}, { url: string}],
+      name: string,
+    },
+    name: string,
+    artists: [{ name: string }],
+    isSelected: isSelected,
+  }
+
+  interface User {
+    token: {
+      token: {
+        access_token: string,
+        user: {
+          id: string,
+        }
+      }
+    }
+  }
+  
+  type isSelected = boolean;
+  
+  export interface SelectedSong {
+    uri: string,
+  }
 
 const PlaylistPages = () => {
     const [accToken, setAccToken] = useState('');
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState<any>({} as User);
     const [songData, setSongData] = useState([]);
-    const [selectedSong, setSelectedSong ] = useState ([]);
-    const [combinedSong, setCombinedSong] = useState([]);
-    const [searchSong, setSearchSong] = useState('');
-    const accessToken = useSelector((state) => state.token.token.accessToken);
-    const userData = useSelector((state) => state.token.user);
+    const [selectedSong, setSelectedSong ] = useState<SelectedSong['uri'][]> ([]);
+    const [combinedSong, setCombinedSong] = useState<Song[]>([]);
+    const [searchSong, setSearchSong] = useState<Song[]>([]);
+    const accessToken = useSelector((state : RootStateOrAny) => state.token.token.accessToken);
+    const userData = useSelector((state: RootStateOrAny) => state.token.user);
 
     useEffect(() => {
         setAccToken(accessToken);
@@ -31,7 +60,7 @@ const PlaylistPages = () => {
             });
     };
   
-    const handleSelectedSong = (uri) => {
+    const handleSelectedSong = (uri: string) => {
         const alreadySelected = selectedSong.find((s) => s === uri);
         if (alreadySelected) {
             setSelectedSong(selectedSong.filter((s) => s !== uri));
@@ -42,7 +71,7 @@ const PlaylistPages = () => {
     };
   
     useEffect(() => {
-        const combinedSongWithSelectedSong = songData.map((song) => ({
+        const combinedSongWithSelectedSong = songData.map((song: Song) => ({
             ...song,
             isSelected: selectedSong.find((s)  => s === song.uri) ? true : false,
         }));

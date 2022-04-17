@@ -1,8 +1,17 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
 import { Button } from '@chakra-ui/react';
 
-const TrackMusic = ({images, title, artist, album, onSelectSong, uri, isSelected}) => {
+interface MusicType {
+    images: string,
+    title:string,
+    artist:string,
+    album:string,
+    onSelectSong: (uri: string) => void,
+    uri:string,
+    isSelected: boolean
+}
+
+const TrackMusic = ({images, title, artist, album, onSelectSong, uri, isSelected}: MusicType) => {
     return <div className="track-desc">
         <img
             src={images}

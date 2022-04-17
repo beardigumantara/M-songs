@@ -1,19 +1,25 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Input, Textarea, Heading, FormLabel, Button } from '@chakra-ui/react';
 
-const CreatePlaylist = ({accessToken, userId, uris}) => {
+interface PlayList{
+    accessToken:string,
+    userId:string,
+    uris:string
+}
+
+const CreatePlaylist = ({accessToken, userId, uris}: PlayList) => {
     const [form, setForm] = useState({
         title: '',
         description: '',
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
         const { name, value } = e.target;
         setForm({...form, [name]: value});
     };
 
-    const handleCreatePlaylist = async (e) => {
+    const handleCreatePlaylist = async (e: any) => {
         e.preventDefault();
 
         if (form.title.length > 5) {
@@ -83,8 +89,6 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
             m='15px'
             name="description" 
             id="description" 
-            cols="30" 
-            rows="10"
             value={form.description}
             onChange={handleChange}
         />
