@@ -20,7 +20,7 @@ const TrackMusic = ({images, title, artist, album, onSelectSong, uri, isSelected
         <h3>{title}</h3>
         <p>{artist}</p>
         <p>{album}</p>
-        <Button colorScheme='teal' size='sm' onClick={() => onSelectSong(uri)}>
+        <Button colorScheme='teal' size='sm' onClick={() => onSelectSong(uri)} mt='15px'>
             {isSelected ? 'Deselect' : 'Select'}
         </Button>
     </div>;

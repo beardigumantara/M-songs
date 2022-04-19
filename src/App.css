@@ -10,7 +10,11 @@ html {
   background-attachment: fixed;
 }
 
-
+nav ul{
+  padding-left: 25px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
 
 h1{
   padding-left: 10px;
@@ -82,10 +86,11 @@ form{
 }
 
 .track-desc {
-  padding-top: 10px;
-  width: 40%;
+  padding: 20px;
+  width: 90%;
   margin-bottom: 20px;
   border: 5px solid rgb(212, 212, 212);
+  
 }
 
 .track-desc:hover {

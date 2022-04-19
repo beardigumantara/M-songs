@@ -2,24 +2,19 @@
 import { useState } from 'react';
 import { Input, Textarea, Heading, FormLabel, Button } from '@chakra-ui/react';
 
-interface PlayList{
-    accessToken:string,
-    userId:string,
-    uris:string
-}
 
-const CreatePlaylist = ({accessToken, userId, uris}: PlayList) => {
+const CreatePlaylist = ({accessToken, userId, uris}) => {
     const [form, setForm] = useState({
         title: '',
         description: '',
     });
 
-    const handleChange = (e: any) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setForm({...form, [name]: value});
     };
 
-    const handleCreatePlaylist = async (e: any) => {
+    const handleCreatePlaylist = async (e) => {
         e.preventDefault();
 
         if (form.title.length > 5) {

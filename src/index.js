@@ -3,18 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './components/store';
-import { ChakraProvider, Box } from '@chakra-ui/react';
+import store from './components/store/store';
+import { ChakraProvider } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
+import {theme} from './components/theme'
 
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <ChakraProvider>
-                <Box w='100%' h='100' bgGradient='linear(to-b, #d874d8, #252525)'>
-                    <App />
-                </Box>
+            <ChakraProvider theme={theme}>
+                <App />
             </ChakraProvider>
         </Provider>
     </React.StrictMode>,

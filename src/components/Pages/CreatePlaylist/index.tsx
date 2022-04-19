@@ -2,8 +2,9 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import CreatePlaylist from '../../track/playlist';
 import TrackMusic from '../../track/index';
-import { useSelector, RootStateOrAny } from 'react-redux';
+// import { useSelector, RootStateOrAny } from 'react-redux';
 import { Button, Input, Heading, Grid} from '@chakra-ui/react';
+import { useAppSelector } from 'components/store/hooks';
 
 interface Song {
     id: string,
@@ -37,12 +38,12 @@ interface Song {
 const PlaylistPages = () => {
     const [accToken, setAccToken] = useState('');
     const [user, setUser] = useState<any>({} as User);
-    const [songData, setSongData] = useState([]);
-    const [selectedSong, setSelectedSong ] = useState<SelectedSong['uri'][]> ([]);
+    const [songData, setSongData] = useState<Song[]>([]);
+    const [selectedSong, setSelectedSong ] = useState<SelectedSong['uri'][]>([]);
     const [combinedSong, setCombinedSong] = useState<Song[]>([]);
-    const [searchSong, setSearchSong] = useState<Song[]>([]);
-    const accessToken = useSelector((state : RootStateOrAny) => state.token.token.accessToken);
-    const userData = useSelector((state: RootStateOrAny) => state.token.user);
+    const [searchSong, setSearchSong] = useState('');
+    const accessToken = useAppSelector((state : any) => state.token.token.accessToken);
+    const userData = useAppSelector((state) => state.token.user);
 
     useEffect(() => {
         setAccToken(accessToken);
@@ -73,7 +74,7 @@ const PlaylistPages = () => {
     useEffect(() => {
         const combinedSongWithSelectedSong = songData.map((song: Song) => ({
             ...song,
-            isSelected: selectedSong.find((s)  => s === song.uri) ? true : false,
+            isSelected: selectedSong.find((s)  => s === song['uri']) ? true : false,
         }));
         setCombinedSong(combinedSongWithSelectedSong);
         console.log(combinedSongWithSelectedSong);
@@ -82,7 +83,7 @@ const PlaylistPages = () => {
     const renderSong = combinedSong.map((music) => 
         <TrackMusic 
             key={music.id}
-            images={music.album.images[1].url}
+            images={music.album.images[1]?.url}
             title={music.name}
             artist={music.artists[0].name}
             album={music.album.name}
@@ -126,7 +127,7 @@ const PlaylistPages = () => {
                 <div className="music-desc">
                     <div className="container">
                         <div className="music">
-                            <Grid templateColumns='repeat(4, 1fr)' gap={4} mt='50px' ml='50px'>
+                            <Grid templateColumns='repeat(3, 1fr)' gap={6} mt='50px' mb='50px' mr='10px' ml='10px'>
                                 {renderSong}
                             </Grid>
                         </div>
