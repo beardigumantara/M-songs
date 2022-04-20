@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 var client_id = process.env.REACT_APP_CLIENT_ID;
 var redirect_uri = 'http://localhost:3000/';
 

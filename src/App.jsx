@@ -6,13 +6,13 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom'; 
 import { useDispatch } from 'react-redux';
 import url from './helper/auth'
+import { Center, Button } from '@chakra-ui/react'
 import { setToken } from './components/store/slice-token'
 import { useSelector } from 'react-redux';
 import {
     BrowserRouter as Router, 
     Switch, 
     Route, 
-    Link, 
     Redirect
 } from 'react-router-dom';
 
@@ -54,7 +54,13 @@ function App() {
         }, [dispatch, history]);
     
         return (
-            <a className='login-page' href={url}>Login</a>
+            <>
+                <Center mt='50px'>
+                    <Button colorScheme='teal'>
+                        <a className='login-page' href={url}>Login</a>
+                    </Button>
+                </Center>
+            </>
         );
     };
 
@@ -62,16 +68,6 @@ function App() {
         <>
             <Router>
                 <div >
-                    <nav>
-                        <ul>
-                            <li>
-                                <Link to="/">Home</Link>
-                            </li>
-                            <li>
-                                <Link to="/create-playlist">Create Playlist</Link>
-                            </li>
-                        </ul>
-                    </nav>
                     <Switch>
                         <Route path="/create-playlist">
                             {isLogin ? <PlaylistPages /> : <Redirect to="/" />}
