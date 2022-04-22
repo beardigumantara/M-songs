@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 
-import CreatePlaylist from '../components/track/playlist';
+import NewPlaylist from '../components/track/playlist';
 
 test('renders learn react link', () => {
-    render(<CreatePlaylist />);
+    render(<NewPlaylist />);
     expect(screen.getByText(/description/i)).toBeInTheDocument();
 });

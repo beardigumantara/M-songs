@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import CreatePlaylist from '../../track/playlist';
+import NewPlaylist from '../../track/playlist';
 import TrackMusic from '../../track/index';
 // import { useSelector, RootStateOrAny } from 'react-redux';
 import { Button, Input, Heading, Grid} from '@chakra-ui/react';
@@ -15,6 +15,7 @@ interface Song {
       name: string,
     },
     name: string,
+    duration_ms: number,
     artists: [{ name: string }],
     isSelected: isSelected,
   }
@@ -80,20 +81,32 @@ const PlaylistPages = () => {
         setCombinedSong(combinedSongWithSelectedSong);
         console.log(combinedSongWithSelectedSong);
     }, [selectedSong, songData]);
-  
-    const renderSong = combinedSong.map((music) => 
-        <TrackMusic 
-            key={music.id}
-            images={music.album.images[1]?.url}
-            title={music.name}
-            artist={music.artists[0].name}
-            album={music.album.name}
-            onSelectSong={handleSelectedSong}
-            uri={music.uri}
-            isSelected={music.isSelected}
-        />
-  
-    );
+
+    const renderSong = combinedSong.map((music) => {
+        const changeDuration = () => {
+          let ms: number = music.duration_ms;
+          const menit = Math.floor((ms / 1000 / 60) << 0);
+          const detik = Math.floor((ms / 1000) % 60);
+          return changeDigit(menit) + ":" + changeDigit(detik);
+        };
+        const changeDigit = (num: number) => {
+          return num.toString().padStart(2, "0");
+        };
+
+        return(
+            <TrackMusic 
+                key={music.id}
+                images={music.album.images[1]?.url}
+                title={music.name}
+                artist={music.artists[0].name}
+                album={music.album.name}
+                duration={changeDuration()}
+                onSelectSong={handleSelectedSong}
+                uri={music.uri}
+                isSelected={music.isSelected}
+            />
+        );
+    });
 
     return (
         <div className="main">
@@ -132,7 +145,7 @@ const PlaylistPages = () => {
             </header>
             <main>
                 <div className='playlist-contemt'>
-                    <CreatePlaylist
+                    <NewPlaylist
                         accessToken={accToken}
                         userId={user.id}
                         uris={selectedSong}

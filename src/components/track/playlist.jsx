@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { Input, Textarea, Heading, FormLabel, Button } from '@chakra-ui/react';
 
 
-const CreatePlaylist = ({accessToken, userId, uris}) => {
+const NewPlaylist = ({accessToken, userId, uris}) => {
     const [form, setForm] = useState({
-        title: '',
-        description: '',
+        title: "",
+        description: "",
     });
 
     const handleChange = (e) => {
@@ -14,7 +14,7 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
         setForm({...form, [name]: value});
     };
 
-    const handleCreatePlaylist = async (e) => {
+    const handleNewPlaylist = async (e) => {
         e.preventDefault();
 
         if (form.title.length > 10) {
@@ -22,12 +22,12 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
                 const requestOptions = {
                     method: 'POST',
                     headers: {
-                        'Authorization' : 'Bearer ' + accessToken,
+                        'Authorization' : `Bearer ${accessToken}`,
                         'Content-Type' : 'application/json',
                     }
                 };
 
-                const optionsCreatePlaylist = {
+                const optionsNewPlaylist = {
                     ...requestOptions,
                     body : JSON.stringify({
                         name: form.title,
@@ -37,7 +37,7 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
                     }),
                 };
 
-                const responseCreatePlaylist = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, optionsCreatePlaylist)
+                const responseNewPlaylist = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, optionsNewPlaylist)
                     .then((data) => data.json());
 
                 const optionsAddSong = {
@@ -47,13 +47,13 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
                     }),
                 };
 
-                await fetch(`https://api.spotify.com/v1/playlists/${responseCreatePlaylist.id}/tracks`, optionsAddSong)
+                await fetch(`https://api.spotify.com/v1/playlists/${responseNewPlaylist.id}/tracks`, optionsAddSong)
                     .then((data) => {
-                        console.log(responseCreatePlaylist);
+                        console.log(responseNewPlaylist);
                         data.json();});
 
-                setForm({title: '', description: ''});
-                alert('Playlist created successfully');
+                setForm({title: "", description: ""});
+                alert('Created New Playlist successfully');
             } catch(err) {
                 alert(err);
             }
@@ -62,7 +62,7 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
         }
     };
 
-    return <form onSubmit={handleCreatePlaylist}>
+    return <form onSubmit={handleNewPlaylist}>
         <Heading as='h2' size='lg' ml='10px' mt='100px' mb='50px'>Create Playlist</Heading>
         <FormLabel htmlFor="title"></FormLabel>
         <Heading as='h3' size='md' ml='15px' mb='15px'>Title</Heading>
@@ -101,4 +101,4 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
     </form>;
 };
 
-export default CreatePlaylist;
+export default NewPlaylist;

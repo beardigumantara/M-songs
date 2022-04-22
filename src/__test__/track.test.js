@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import TrackMusic from "components/track";
-import CreatePlaylist from '../components/track/playlist';
+import NewPlaylist from '../components/track/playlist';
 import userEvent from '@testing-library/user-event';
 
 //add testing to test case toBeInTheDocument()
@@ -21,7 +21,7 @@ test('render track component', () => {
 
 //add testing case for userEvent
 test('click create button', () => {
-    render(<CreatePlaylist />)
+    render(<NewPlaylist />)
   
     userEvent.click(screen.getByText('Create'));
     expect(screen.getByRole('button')).toHaveTextContent('Create');
