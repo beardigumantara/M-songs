@@ -10,10 +10,8 @@ html {
   background-attachment: fixed;
 }
 
-nav ul{
-  padding-left: 25px;
-  margin-top: 15px;
-  margin-bottom: 20px;
+span{
+  color: cyan;
 }
 
 h1{
@@ -21,28 +19,32 @@ h1{
   color: white;
 }
 
-.navbar, ul {
+.navbar {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   list-style-type: none;
   padding-right: 20px;
   color: white;
+  background-color: #141414;
+  z-index: 10;
+  position: fixed;
 }
+
 
 a:hover{
   color: rgb(216, 216, 216);
 }
 
-.search-bar input, .search-bar {
-  padding-left: 10px;
+.search-bar {
+  margin-left: 30%;
   margin-right: 10px;
   margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .navbar, h2{
   width: 100%;
-  margin-top: 10px;
   float: left;
   padding-left: 5px;
 }
@@ -54,13 +56,10 @@ textarea{
 .login-page{
   text-align: center;
   margin: 0 auto;
+  color: black;
+  outline: none;
 }
 
-a{
-  margin-right: 15px;
-  color: white;
-  text-decoration: none;
-}
 
 form{
   padding-top: 50px;
@@ -69,32 +68,22 @@ form{
 }
 
 .container {
-  margin: 0 100px;
+  margin: 0 10px;
   padding-left: 10px;
 }
 
-.music {
-  border: 5px solid white;
-  border-radius: 15px;
-  padding: 20px 20px;
-  color: white;
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  margin: 0;
-  justify-content: space-around;
-}
-
 .track-desc {
+  background-color: rgb(53, 53, 53);
   padding: 20px;
-  width: 90%;
+  width: 10 0%;
   margin-bottom: 20px;
-  border: 5px solid rgb(212, 212, 212);
-  
+  border: 3px solid #252525;
+  border-radius: 15px;
 }
 
 .track-desc:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: #464646;
+  border: none;
 }
 
 .klik {
@@ -111,28 +100,31 @@ form{
 }
 
 button {
-  border-radius: 15px;
   padding: 10px 20px;
   cursor: pointer;
   margin-bottom: 10px;
-  background: transparent;
-  border: 3px solid white;
+  /* border: 2px solid white; */
   color: white;
   font-weight: bold;
 }
 
 button:hover {
-  background-color: rgba(128, 126, 126, 0.5);
+  background-color: rgba(128, 126, 126, 0.7);
   transition: all 0.2s;
 }
 
-input,
-textarea {
-  background: transparent;
-  display: inline-block;
-  border: 3px solid white;
-  border-radius: 7px;
-  color: white;
-  margin: 10px 0;
+
+Input:focus {
+  outline: none;
 }
 
+.css-judj5e, .css-ou2vyq{
+  outline: none;
+  border: none;
+}
+
+
+.css-k3hei3{
+  background-color: #464646;
+  border: 3px solid #464646;
+}

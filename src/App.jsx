@@ -56,7 +56,7 @@ function App() {
         return (
             <>
                 <Center mt='50px'>
-                    <Button colorScheme='teal'>
+                    <Button colorScheme='cyan' variant='solid'>
                         <a className='login-page' href={url}>Login</a>
                     </Button>
                 </Center>

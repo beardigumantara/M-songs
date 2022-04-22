@@ -5,6 +5,7 @@ import TrackMusic from '../../track/index';
 // import { useSelector, RootStateOrAny } from 'react-redux';
 import { Button, Input, Heading, Grid} from '@chakra-ui/react';
 import { useAppSelector } from 'components/store/hooks';
+import {Search2Icon} from '@chakra-ui/icons'
 
 interface Song {
     id: string,
@@ -99,7 +100,33 @@ const PlaylistPages = () => {
             <header>
                 <div className="navbar">
                     <div className="logo">
-                        <Heading as='h1' size='lg' isTruncated ml='15px' mt='20px' mb='20px'>M-Songs</Heading>
+                        <Heading as='h1' size='lg' ml='15px' mt='15px' mb='20px'><span>M</span>-Tify<span>.</span></Heading>
+                    </div>
+                    <div className="search-bar">
+                        <Input 
+                            width='300px'
+                            mr='15px' 
+                            mt='10px'
+                            size='md' 
+                            type="search"
+                            borderRadius="20"
+                            focusBorderColor='gray.400'
+                            placeholder='Search Song...'
+                            onChange={
+                                (e) =>setSearchSong(e.target.value)
+                            }
+                        />
+                        <Button 
+                            colorScheme='black'
+                            leftIcon={<Search2Icon ml='2' color='white'/>}
+                            width="12" 
+                            size='md' 
+                            type="button"
+                            borderRadius='25px'
+                            mb='5px'
+                            onClick={getSong}   
+                        >
+                        </Button>
                     </div>
                 </div>
             </header>
@@ -111,23 +138,10 @@ const PlaylistPages = () => {
                         uris={selectedSong}
                     />
                 </div>
-                <div className="search-bar">
-                    <Input 
-                        width='300px'
-                        mr='15px' 
-                        ml='15px'
-                        size='sm' 
-                        type="search" 
-                        onChange={
-                            (e) =>setSearchSong(e.target.value)
-                        }
-                    />
-                    <Button colorScheme='teal' size='sm' type="button" onClick={getSong}>search</Button>
-                </div>
                 <div className="music-desc">
                     <div className="container">
                         <div className="music">
-                            <Grid templateColumns='repeat(3, 1fr)' gap={6} mt='50px' mb='50px' mr='10px' ml='10px'>
+                            <Grid templateColumns='repeat(5, 1fr)' gap={10} mt='50px' mb='50px' mr='10px' ml='10px'>
                                 {renderSong}
                             </Grid>
                         </div>

@@ -17,7 +17,7 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
     const handleCreatePlaylist = async (e) => {
         e.preventDefault();
 
-        if (form.title.length > 5) {
+        if (form.title.length > 10) {
             try {
                 const requestOptions = {
                     method: 'POST',
@@ -58,18 +58,23 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
                 alert(err);
             }
         } else {
-            alert('Title must be larger than 5 characters');
+            alert('Title must be larger than 10 characters');
         }
     };
 
     return <form onSubmit={handleCreatePlaylist}>
-        <Heading as='h2' size='md' ml='15px' mt='20px' mb='20px'>Create Playlist</Heading>
-        <FormLabel htmlFor="title" ml='15px'>Title</FormLabel>
+        <Heading as='h2' size='lg' ml='10px' mt='100px' mb='50px'>Create Playlist</Heading>
+        <FormLabel htmlFor="title"></FormLabel>
+        <Heading as='h3' size='md' ml='15px' mb='15px'>Title</Heading>
         <Input 
-            width='300px'
-            mr='15px' 
+            width='95%'
+            variant='flushed'
+            focusBorderColor='gray.100'
+            placeholder='Must have at least 10 characters'
+            mr='15px'
+            mb='15px' 
             ml='15px'
-            size='sm' 
+            size='lg' 
             type="text" 
             name="title" 
             id="title"
@@ -77,10 +82,14 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
             onChange={handleChange}
         />
         <br />
-        <FormLabel htmlFor="description" ml='15px'>Description</FormLabel>
+        <FormLabel htmlFor="description" ml='15px' mt='20px'></FormLabel>
+        <Heading as='h3' size='md' ml='15px' mt='20px' mb='10px'>Description</Heading>
         <Textarea
-            width='300px'
-            height='200px'
+            width='95%'
+            variant='flushed'
+            placeholder='Enter your Description here'
+            focusBorderColor='gray.100' 
+            size='lg'
             m='15px'
             name="description" 
             id="description" 
@@ -88,7 +97,7 @@ const CreatePlaylist = ({accessToken, userId, uris}) => {
             onChange={handleChange}
         />
         <br />
-        <Button colorScheme='teal' size='md' ml='15px' mb='20px' type="submit">Create</Button>
+        <Button colorScheme='cyan' size='md' mt='15px' ml='15px' mb='20px' type="submit">Create</Button>
     </form>;
 };
 
